@@ -42,7 +42,9 @@ public class SearchResults {
         Collections.sort(pages, (a, b) -> ((Integer) a.index()).compareTo(b.index()));
 
         for (MwQueryPage page : pages) {
-            searchResults.add(new SearchResult(page, wiki));
+            if(!page.categoryInfo().isHidden()){
+                searchResults.add(new SearchResult(page, wiki));
+            }
         }
         this.results = searchResults;
         this.continuation = continuation;
